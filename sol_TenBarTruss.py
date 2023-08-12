@@ -30,7 +30,6 @@ class TenBarTruss:
 
         K_reduced = K[:8, :8]
         f_reduced = f[:8]
-
         K_reduced_inv = numpy.linalg.inv(K_reduced)
         q_reduced = numpy.dot(K_reduced_inv, f_reduced)
         q[:8] = q_reduced
@@ -46,7 +45,7 @@ class TenBarTruss:
             
             A = [-elements[i].cos, -elements[i].sin, elements[i].cos, elements[i].sin]
             q_element = [q[a-1], q[a], q[b-1], q[b]]
-            sigma[a-1] = elements[i].E/elements[i].L*numpy.dot(A, q_element)
+            sigma[i] = elements[i].E/elements[i].L*numpy.dot(A, q_element)
 
         print("sigma= ", sigma)
         self.sigma = sigma

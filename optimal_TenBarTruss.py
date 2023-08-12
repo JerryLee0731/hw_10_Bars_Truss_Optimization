@@ -26,39 +26,38 @@ def constraint_sigma1(r):
 
     tenBarTruss = main(r)
 
-    return sigmaY-tenBarTruss.sigma[0]
+    return sigmaY-abs(tenBarTruss.sigma[0])
 
 
 def constraint_sigma2(r):
 
     tenBarTruss = main(r)
     
-    return sigmaY-tenBarTruss.sigma[1]
-"""
+    return sigmaY-abs(tenBarTruss.sigma[1])
+
 def constraint_sigma3(r):
 
     tenBarTruss = main(r)
     
-    return sigmaY-tenBarTruss.sigma[2]
+    return sigmaY-abs(tenBarTruss.sigma[2])
 
 def constraint_sigma4(r):
 
     tenBarTruss = main(r)
     
-    return sigmaY-tenBarTruss.sigma[3]
+    return sigmaY-abs(tenBarTruss.sigma[3])
 
 def constraint_sigma5(r):
 
     tenBarTruss = main(r)
     
-    return sigmaY-tenBarTruss.sigma[4]
+    return sigmaY-abs(tenBarTruss.sigma[4])
 
 def constraint_sigma6(r):
 
     tenBarTruss = main(r)
     
-    return sigmaY-tenBarTruss.sigma[5]
-"""
+    return sigmaY-abs(tenBarTruss.sigma[5])
 
 
 def constraint_q2(r):
@@ -73,18 +72,16 @@ def constraint_q2(r):
 
 constraint1 = {'type': 'ineq', 'fun': constraint_sigma1}
 constraint2 = {'type': 'ineq', 'fun': constraint_sigma2}
-"""
 constraint3 = {'type': 'ineq', 'fun': constraint_sigma3}
 constraint4 = {'type': 'ineq', 'fun': constraint_sigma4}
 constraint5 = {'type': 'ineq', 'fun': constraint_sigma5}
 constraint6 = {'type': 'ineq', 'fun': constraint_sigma6}
-"""
+
 constraint0 = {'type': 'ineq', 'fun': constraint_q2}
 
-constraints = [constraint1, constraint2, constraint0]
-#constraints = [constraint1, constraint2, constraint3, constraint4, constraint5, constraint6, constraint0]
+constraints = [constraint1, constraint2, constraint3, constraint4, constraint5, constraint6, constraint0]
 
-initial_guess = [0.4, 0.3]
+initial_guess = [0.5, 0.4]
 
 r1boundary = [0.001, 0.5]
 r2boundary = [0.001, 0.5]
