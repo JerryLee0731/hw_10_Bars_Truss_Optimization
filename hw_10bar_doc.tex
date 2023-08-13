@@ -1,0 +1,141 @@
+\documentclass[12pt, a4paper]{article}
+
+% \usepackage{extsizes}  % 字體文件使用 14pt
+\usepackage{xeCJK}
+\usepackage[margin=2.0cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{listings}  % code showing
+\usepackage{pagecolor}  % code color define
+\usepackage{tocloft}  % contents
+\usepackage{hyperref} % 超連結
+
+% -- 字體 (注意檔案是否存在)
+\setCJKmainfont{DFKai-SB}
+\setmainfont{Times New Roman}
+% \setCJKmainfont[
+    % Path="path to folder"
+    % Path="/home/ych/Repository/solab-latex/Template/Thesis/fonts/"
+% ]{kaiu}
+% \setmainfont[
+    % Path="path to folder",
+    % Path="/home/ych/Repository/solab-latex/Template/Thesis/fonts/",
+    % BoldFont={Times New Roman Bold},
+    % ItalicFont={Times New Roman Italic},
+    % BoldItalicFont={Times New Roman Bold Italic}
+% ]{Times New Roman}
+% \setsansfont{Arial}
+% \setmonofont{DroidSansMono Nerd Font}
+
+% -- 格式
+\pagestyle{fancy}  % 使用 header
+\fancyhf{}
+\setcounter{secnumdepth}{-1}  % 移除 section 數字
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+%% -- 標題使用中文取代
+\renewcommand{\figurename}{圖}
+\renewcommand{\tablename}{表}
+\renewcommand{\lstlistingname}{程式碼}
+
+%% -- 間距設定
+% \linespread{1.2}\selectfont  % 行距
+\setlength{\headheight}{29pt}  % header 最低高度
+\setlength{\parindent}{0pt}  % 取消縮排
+\setlength{\parskip}{0.5em}  % 段落距離
+\setlength{\abovecaptionskip}{10pt}  % 圖表標題 caption 與圖表的距離
+\setlength{\belowcaptionskip}{10pt}
+
+%% -- 顯示程式碼
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{pystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\footnotesize\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2,
+    extendedchars=false
+}
+\lstset{style=pystyle}
+
+% 自定義超連結的顏色
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    linktoc=all,
+    pdfborder={0 0 0} % 移除邊框
+}
+
+% ---------------------------------------------
+
+\begin{document}
+
+\chead{\normalsize \textbf{Homework 10-bar Truss Optimization}}  % 可調整大小
+\lhead{\normalsize SoLab training}
+\rhead{\normalsize R12522621 李京睿}
+\cfoot{\thepage}
+
+% \tableofcontents\thispagestyle{fancy} % 目錄顯示
+
+% ---------------------------------------------
+
+\section{Problem}
+
+在特定的約束條件下，最佳化truss半徑，使10-bar Truss的整體重量達到最輕。\\\\
+最佳化函數如下
+\begin{equation*}
+ 	\min_{r_1, r_2} f(r_1, r_2) = \sum_{i=1}^{6}m_i(r_1) + \sum_{i=7}^{10} m_i(r_2)
+\end{equation*}
+約束條件如下
+\begin{equation*}
+	\begin{aligned}
+		\left| \sigma_i \right| &<= \sigma_y \\
+		\Delta s_2 &<= 0.02
+	\end{aligned}
+\end{equation*}
+where
+\begin{align*}
+    f & : \text{所有桿件的質量} \\
+    \Delta s_2 & : \text{node 2 的位移} \\
+    \sigma_y & : \text{降伏應力} \\
+    \sigma_i & : \text{所有桿件的應力}
+\end{align*}
+
+\subsection*{Solution}
+
+使用講義提供之有限元素法，透過python執行計算後得到結果如下:
+\begin{align*}
+    f &= 2.124 \times 10^6 \, \text{kg}
+\end{align*}
+where
+\begin{align*}
+    r_1 & = 0.300 \, \text{m} \\
+    r_2 & = 0.266 \, \text{m}
+\end{align*}
+
+\href{https://github.com/JerryLee0731/hw_10_Bars_Truss_Optimization}{點擊這裡}查看完整程式內容。
+
+
+\begingroup  % 隱藏預設參考文獻標題
+    \renewcommand{\section}[2]{}
+    \bibliographystyle{ieeetr}
+    \bibliography{ref.bib}
+\endgroup
+
+\end{document}
